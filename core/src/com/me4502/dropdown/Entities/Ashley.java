@@ -66,14 +66,14 @@ public class Ashley extends LivingEntity {
 
 		float stateTime;
 
-		Animation ashleyAnimationRight;
+		Animation<TextureRegion> ashleyAnimationRight;
 		TextureRegion[] ashleyFramesRight;
-		Animation ashleyAnimationLeft;
+		Animation<TextureRegion> ashleyAnimationLeft;
 		TextureRegion[] ashleyFramesLeft;
 
-		Animation ashleyKissAnimationLeft;
+		Animation<TextureRegion> ashleyKissAnimationLeft;
 		TextureRegion[] ashleyKissFramesLeft;
-		Animation ashleyKissAnimationRight;
+		Animation<TextureRegion> ashleyKissAnimationRight;
 		TextureRegion[] ashleyKissFramesRight;
 
 		TextureRegion currentFrame;
@@ -87,7 +87,7 @@ public class Ashley extends LivingEntity {
 			for (int j = 0; j < 2; j++) {
 				ashleyFramesRight[index++] = tmp[0][j];
 			}
-			ashleyAnimationRight = new Animation(1f, ashleyFramesRight);
+			ashleyAnimationRight = new Animation<>(1f, ashleyFramesRight);
 
 			Texture swordSheetLeft = TextureStorage.getTexture("ashleyLeft");
 			tmp = TextureRegion.split(swordSheetLeft, swordSheetLeft.getWidth() / 2, swordSheetLeft.getHeight());
@@ -96,7 +96,7 @@ public class Ashley extends LivingEntity {
 			for (int j = 0; j < 2; j++) {
 				ashleyFramesLeft[index++] = tmp[0][j];
 			}
-			ashleyAnimationLeft = new Animation(1f, ashleyFramesLeft);
+			ashleyAnimationLeft = new Animation<>(1f, ashleyFramesLeft);
 
 			Texture kissSheet = TextureStorage.getTexture("kissSceneLeft");
 			tmp = TextureRegion.split(kissSheet, kissSheet.getWidth() / 3, kissSheet.getHeight());
@@ -105,7 +105,7 @@ public class Ashley extends LivingEntity {
 			for (int j = 0; j < 3; j++) {
 				ashleyKissFramesLeft[index++] = tmp[0][j];
 			}
-			ashleyKissAnimationLeft = new Animation(0.6f, ashleyKissFramesLeft);
+			ashleyKissAnimationLeft = new Animation<>(0.6f, ashleyKissFramesLeft);
 
 			kissSheet = TextureStorage.getTexture("kissSceneRight");
 			tmp = TextureRegion.split(kissSheet, kissSheet.getWidth() / 3, kissSheet.getHeight());
@@ -114,7 +114,7 @@ public class Ashley extends LivingEntity {
 			for (int j = 0; j < 3; j++) {
 				ashleyKissFramesRight[index++] = tmp[0][j];
 			}
-			ashleyKissAnimationRight = new Animation(0.6f, ashleyKissFramesRight);
+			ashleyKissAnimationRight = new Animation<>(0.6f, ashleyKissFramesRight);
 
 			stateTime = 0f;
 		}
@@ -122,8 +122,6 @@ public class Ashley extends LivingEntity {
 		public void render(SpriteBatch batch) {
 			stateTime += Gdx.graphics.getDeltaTime();
 			updateSprite();
-
-			sprite.setScale(DropDownGame.lev.getBaseYScale());
 
 			sprite.setPosition((float)getPosition().getX(), (float)getPosition().getY());
 

@@ -1,10 +1,9 @@
 package com.me4502.dropdown.Items;
 
-
 public abstract class Item {
 
 	short durability, maxDurability;
-	private ItemType type;
+	private final ItemType type;
 
 	public Item(ItemType type, short durability) {
 		maxDurability = this.durability = durability;

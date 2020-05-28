@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.me4502.dropdown.DropDownGame;
 import com.me4502.dropdown.Position;
 import com.me4502.dropdown.SoundStorage;
 import com.me4502.dropdown.TextureStorage;
@@ -146,8 +145,8 @@ public class Player extends LivingEntity {
 			}
 		}
 
-		if(Gdx.input.isKeyPressed(Keys.A) || DropDownGame.moveLeft) {
-			if(Gdx.input.isKeyPressed(Keys.S) || DropDownGame.moveCrouch) {
+		if(Gdx.input.isKeyPressed(Keys.A)) {
+			if(Gdx.input.isKeyPressed(Keys.S)) {
 				tryMove(new Position(getPosition().getX()-1, getPosition().getY()));
 				setAction(Action.SNEAK_LEFT);
 			} else {
@@ -168,8 +167,8 @@ public class Player extends LivingEntity {
 			}
 			timeSinceMove = 0;
 		}
-		if(Gdx.input.isKeyPressed(Keys.D) || DropDownGame.moveRight) {
-			if(Gdx.input.isKeyPressed(Keys.S) || DropDownGame.moveCrouch) {
+		if(Gdx.input.isKeyPressed(Keys.D)) {
+			if(Gdx.input.isKeyPressed(Keys.S)) {
 				tryMove(new Position(getPosition().getX()+1, getPosition().getY()));
 				setAction(Action.SNEAK_RIGHT);
 			} else {
@@ -190,7 +189,7 @@ public class Player extends LivingEntity {
 			}
 			timeSinceMove = 0;
 		}
-		if((Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.SPACE) || DropDownGame.moveJump) && jumpTimer <= -15 && collidesWithTiles(true,false,true))
+		if((Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.SPACE)) && jumpTimer <= -15 && collidesWithTiles(true,false,true))
 			jumpTimer = isSneaking() ? 18 : 15;
 
 		if(lastHit > 20 || damageTimeout > 60) {
@@ -285,29 +284,29 @@ public class Player extends LivingEntity {
 
 		float stateTime;
 
-		Animation swordAnimationLeft;
+		Animation<TextureRegion> swordAnimationLeft;
 		TextureRegion[] swordFramesLeft;
-		Animation swordAnimationRight;
+		Animation<TextureRegion> swordAnimationRight;
 		TextureRegion[] swordFramesRight;
 
-		Animation swordAnimationStabLeft;
+		Animation<TextureRegion> swordAnimationStabLeft;
 		TextureRegion[] swordFramesStabLeft;
-		Animation swordAnimationStabRight;
+		Animation<TextureRegion> swordAnimationStabRight;
 		TextureRegion[] swordFramesStabRight;
 
-		Animation crossbowAnimationLeft;
+		Animation<TextureRegion> crossbowAnimationLeft;
 		TextureRegion[] crossbowFramesLeft;
-		Animation crossbowAnimationRight;
+		Animation<TextureRegion> crossbowAnimationRight;
 		TextureRegion[] crossbowFramesRight;
 
-		Animation lampAnimationRight;
+		Animation<TextureRegion> lampAnimationRight;
 		TextureRegion[] lampFramesRight;
-		Animation lampAnimationLeft;
+		Animation<TextureRegion> lampAnimationLeft;
 		TextureRegion[] lampFramesLeft;
 
-		Animation armAnimationRight;
+		Animation<TextureRegion> armAnimationRight;
 		TextureRegion[] armFramesRight;
-		Animation armAnimationLeft;
+		Animation<TextureRegion> armAnimationLeft;
 		TextureRegion[] armFramesLeft;
 
 		TextureRegion currentFrame;
@@ -320,7 +319,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 1; j++) {
 				swordFramesRight[index++] = tmp[0][j];
 			}
-			swordAnimationRight = new Animation(1f, swordFramesRight);
+			swordAnimationRight = new Animation<>(1f, swordFramesRight);
 
 			Texture swordSheetLeft = TextureStorage.getTexture("swordArmLeft");
 			tmp = TextureRegion.split(swordSheetLeft, swordSheetLeft.getWidth() / 1, swordSheetLeft.getHeight());
@@ -329,7 +328,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 1; j++) {
 				swordFramesLeft[index++] = tmp[0][j];
 			}
-			swordAnimationLeft = new Animation(1f, swordFramesLeft);
+			swordAnimationLeft = new Animation<>(1f, swordFramesLeft);
 
 			Texture swordSheetStabRight = TextureStorage.getTexture("swordArmStabRight");
 			tmp = TextureRegion.split(swordSheetStabRight, swordSheetStabRight.getWidth() / 2, swordSheetStabRight.getHeight());
@@ -338,7 +337,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 2; j++) {
 				swordFramesStabRight[index++] = tmp[0][j];
 			}
-			swordAnimationStabRight = new Animation(0.15f, swordFramesStabRight);
+			swordAnimationStabRight = new Animation<>(0.15f, swordFramesStabRight);
 
 			Texture swordSheetStabLeft = TextureStorage.getTexture("swordArmStabLeft");
 			tmp = TextureRegion.split(swordSheetStabLeft, swordSheetStabLeft.getWidth() / 2, swordSheetStabLeft.getHeight());
@@ -347,7 +346,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 2; j++) {
 				swordFramesStabLeft[index++] = tmp[0][j];
 			}
-			swordAnimationStabLeft = new Animation(0.15f, swordFramesStabLeft);
+			swordAnimationStabLeft = new Animation<>(0.15f, swordFramesStabLeft);
 
 			Texture crossbowSheetRight = TextureStorage.getTexture("crossbowArmRight");
 			tmp = TextureRegion.split(crossbowSheetRight, crossbowSheetRight.getWidth() / 1, crossbowSheetRight.getHeight());
@@ -356,7 +355,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 1; j++) {
 				crossbowFramesRight[index++] = tmp[0][j];
 			}
-			crossbowAnimationRight = new Animation(1f, crossbowFramesRight);
+			crossbowAnimationRight = new Animation<>(1f, crossbowFramesRight);
 
 			Texture crossbowSheetLeft = TextureStorage.getTexture("crossbowArmLeft");
 			tmp = TextureRegion.split(crossbowSheetLeft, crossbowSheetLeft.getWidth() / 1, crossbowSheetLeft.getHeight());
@@ -365,7 +364,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 1; j++) {
 				crossbowFramesLeft[index++] = tmp[0][j];
 			}
-			crossbowAnimationLeft = new Animation(1f, crossbowFramesLeft);
+			crossbowAnimationLeft = new Animation<>(1f, crossbowFramesLeft);
 
 			Texture lampSheetRight = TextureStorage.getTexture("lampArmRight");
 			tmp = TextureRegion.split(lampSheetRight, lampSheetRight.getWidth() / 1, lampSheetRight.getHeight());
@@ -374,7 +373,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 1; j++) {
 				lampFramesRight[index++] = tmp[0][j];
 			}
-			lampAnimationRight = new Animation(1f, lampFramesRight);
+			lampAnimationRight = new Animation<>(1f, lampFramesRight);
 
 			Texture crouchSheetLeft = TextureStorage.getTexture("lampArmLeft");
 			tmp = TextureRegion.split(crouchSheetLeft, crouchSheetLeft.getWidth() / 1, crouchSheetLeft.getHeight());
@@ -383,7 +382,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 1; j++) {
 				lampFramesLeft[index++] = tmp[0][j];
 			}
-			lampAnimationLeft = new Animation(1f, lampFramesLeft);
+			lampAnimationLeft = new Animation<>(1f, lampFramesLeft);
 
 			Texture armSheetRight = TextureStorage.getTexture("armArmRight");
 			tmp = TextureRegion.split(armSheetRight, armSheetRight.getWidth() / 1, armSheetRight.getHeight());
@@ -392,7 +391,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 1; j++) {
 				armFramesRight[index++] = tmp[0][j];
 			}
-			armAnimationRight = new Animation(1f, armFramesRight);
+			armAnimationRight = new Animation<>(1f, armFramesRight);
 
 			Texture armSheetLeft = TextureStorage.getTexture("armArmLeft");
 			tmp = TextureRegion.split(armSheetLeft, armSheetLeft.getWidth() / 1, armSheetLeft.getHeight());
@@ -401,7 +400,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 1; j++) {
 				armFramesLeft[index++] = tmp[0][j];
 			}
-			armAnimationLeft = new Animation(1f, armFramesLeft);
+			armAnimationLeft = new Animation<>(1f, armFramesLeft);
 			stateTime = 0f;
 		}
 
@@ -439,24 +438,24 @@ public class Player extends LivingEntity {
 
 		float stateTime;
 
-		Animation stillAnimationLeft;
+		Animation<TextureRegion> stillAnimationLeft;
 		TextureRegion[] stillFramesLeft;
-		Animation stillAnimationRight;
+		Animation<TextureRegion> stillAnimationRight;
 		TextureRegion[] stillFramesRight;
 
-		Animation walkAnimationLeft;
+		Animation<TextureRegion> walkAnimationLeft;
 		TextureRegion[] walkFramesLeft;
-		Animation walkAnimationRight;
+		Animation<TextureRegion> walkAnimationRight;
 		TextureRegion[] walkFramesRight;
 
-		Animation crouchAnimationRight;
+		Animation<TextureRegion> crouchAnimationRight;
 		TextureRegion[] crouchFramesRight;
-		Animation crouchAnimationLeft;
+		Animation<TextureRegion> crouchAnimationLeft;
 		TextureRegion[] crouchFramesLeft;
 
-		Animation crouchStillAnimationRight;
+		Animation<TextureRegion> crouchStillAnimationRight;
 		TextureRegion[] crouchStillFramesRight;
-		Animation crouchStillAnimationLeft;
+		Animation<TextureRegion> crouchStillAnimationLeft;
 		TextureRegion[] crouchStillFramesLeft;
 
 		TextureRegion currentFrame;
@@ -469,7 +468,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 8; j++) {
 				walkFramesRight[index++] = tmp[0][j];
 			}
-			walkAnimationRight = new Animation(0.15f, walkFramesRight);
+			walkAnimationRight = new Animation<>(0.15f, walkFramesRight);
 
 			Texture stillSheetRight = TextureStorage.getTexture("playerRightStill");
 			tmp = TextureRegion.split(stillSheetRight, stillSheetRight.getWidth() / 2, stillSheetRight.getHeight());
@@ -478,7 +477,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 2; j++) {
 				stillFramesRight[index++] = tmp[0][j];
 			}
-			stillAnimationRight = new Animation(1f, stillFramesRight);
+			stillAnimationRight = new Animation<>(1f, stillFramesRight);
 
 			Texture walkSheetLeft = TextureStorage.getTexture("playerLeft");
 			tmp = TextureRegion.split(walkSheetLeft, walkSheetLeft.getWidth() / 8, walkSheetLeft.getHeight());
@@ -487,7 +486,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 8; j++) {
 				walkFramesLeft[index++] = tmp[0][j];
 			}
-			walkAnimationLeft = new Animation(0.15f, walkFramesLeft);
+			walkAnimationLeft = new Animation<>(0.15f, walkFramesLeft);
 
 			Texture stillSheetLeft = TextureStorage.getTexture("playerLeftStill");
 			tmp = TextureRegion.split(stillSheetLeft, stillSheetLeft.getWidth() / 2, stillSheetLeft.getHeight());
@@ -496,7 +495,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 2; j++) {
 				stillFramesLeft[index++] = tmp[0][j];
 			}
-			stillAnimationLeft = new Animation(0.5f, stillFramesLeft);
+			stillAnimationLeft = new Animation<>(0.5f, stillFramesLeft);
 
 			Texture crouchSheetRight = TextureStorage.getTexture("playerRightCrouch");
 			tmp = TextureRegion.split(crouchSheetRight, crouchSheetRight.getWidth() / 8, crouchSheetRight.getHeight());
@@ -505,7 +504,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 8; j++) {
 				crouchFramesRight[index++] = tmp[0][j];
 			}
-			crouchAnimationRight = new Animation(0.25f, crouchFramesRight);
+			crouchAnimationRight = new Animation<>(0.25f, crouchFramesRight);
 
 			Texture crouchSheetLeft = TextureStorage.getTexture("playerLeftCrouch");
 			tmp = TextureRegion.split(crouchSheetLeft, crouchSheetLeft.getWidth() / 8, crouchSheetLeft.getHeight());
@@ -514,7 +513,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 8; j++) {
 				crouchFramesLeft[index++] = tmp[0][j];
 			}
-			crouchAnimationLeft = new Animation(0.25f, crouchFramesLeft);
+			crouchAnimationLeft = new Animation<>(0.25f, crouchFramesLeft);
 
 			Texture crouchStillSheetRight = TextureStorage.getTexture("playerRightCrouchStill");
 			tmp = TextureRegion.split(crouchStillSheetRight, crouchStillSheetRight.getWidth() / 1, crouchStillSheetRight.getHeight());
@@ -523,7 +522,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 1; j++) {
 				crouchStillFramesRight[index++] = tmp[0][j];
 			}
-			crouchStillAnimationRight = new Animation(0.25f, crouchStillFramesRight);
+			crouchStillAnimationRight = new Animation<>(0.25f, crouchStillFramesRight);
 
 			Texture crouchStillSheetLeft = TextureStorage.getTexture("playerLeftCrouchStill");
 			tmp = TextureRegion.split(crouchStillSheetLeft, crouchStillSheetLeft.getWidth() / 1, crouchStillSheetLeft.getHeight());
@@ -532,7 +531,7 @@ public class Player extends LivingEntity {
 			for (int j = 0; j < 1; j++) {
 				crouchStillFramesLeft[index++] = tmp[0][j];
 			}
-			crouchStillAnimationLeft = new Animation(0.25f, crouchStillFramesLeft);
+			crouchStillAnimationLeft = new Animation<>(0.25f, crouchStillFramesLeft);
 			stateTime = 0f;
 		}
 

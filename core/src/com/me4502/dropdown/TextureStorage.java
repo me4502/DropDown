@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class TextureStorage {
 
-	private static HashMap<String, Texture> textures = new HashMap<String, Texture>();
+	private static final HashMap<String, Texture> textures = new HashMap<>();
 
 	public static void addTexture(String name, Texture texture) {
 		textures.put(name, texture);
@@ -18,7 +18,6 @@ public class TextureStorage {
 	}
 
 	public static Collection<Texture> getTextures() {
-
 		return textures.values();
 	}
 }
