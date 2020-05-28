@@ -7,7 +7,7 @@ import com.badlogic.gdx.audio.Sound;
 
 public class SoundStorage {
 
-	private static HashMap<String, Sound> sounds = new HashMap<String, Sound>();
+	private static final HashMap<String, Sound> sounds = new HashMap<>();
 
 	public static void addSound(String name, Sound sound) {
 		sounds.put(name, sound);
@@ -18,7 +18,6 @@ public class SoundStorage {
 	}
 
 	public static Collection<Sound> getSounds() {
-
 		return sounds.values();
 	}
 }

@@ -24,7 +24,7 @@ public class Level {
 
 	public LevelBase base;
 
-	public List<Entity> entities = new LinkedList<Entity>();
+	public List<Entity> entities = new LinkedList<>();
 
 	public int cameraXOffset = 0;
 
@@ -97,8 +97,14 @@ public class Level {
 		boolean didDelete = false;
 		while(iter.hasNext()) {
 			Entity ent = iter.next();
-			if(ent instanceof LivingEntity && ((LivingEntity)ent).dead == true) {iter.remove(); didDelete = true; continue;}
-			if(ent.remove == true) {iter.remove(); continue;}
+			if (ent instanceof LivingEntity && ((LivingEntity) ent).dead) {
+				iter.remove();
+				didDelete = true;
+				continue;
+			}
+			if (ent.remove) {
+				iter.remove(); continue;
+			}
 			ent.update();
 		}
 		if(didDelete) {
@@ -125,7 +131,6 @@ public class Level {
 	}
 
 	public void render(SpriteBatch batch) {
-
 		for(int x = 0; x < getBaseYScale()*getBase().getTiles().length+Gdx.graphics.getWidth()/64; x++) {
 			for(int y = 0; y < getBaseYScale()*getBase().getTiles()[0].length+Gdx.graphics.getHeight()/64; y++) {
 				Sprite sprite = new Sprite(base.getBackground().getTexture());

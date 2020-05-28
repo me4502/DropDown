@@ -58,7 +58,6 @@ public class CrossbowBolt extends InsentientEntity {
 
 	@Override
 	public void render(SpriteBatch batch) {
-		sprite.setScale(DropDownGame.lev.getBaseYScale());
 		sprite.draw(batch);
 	}
 }

@@ -26,12 +26,10 @@ public class Position {
 	}
 
 	public double getDistance(Position position) {
-
 		return Math.sqrt(getDistanceSquared(position));
 	}
 
 	public double getDistanceSquared(Position position) {
-
 		double xOff = Math.pow(x-position.x, 2);
 		double yOff = Math.pow(y-position.y, 2);
 

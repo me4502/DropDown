@@ -30,26 +30,25 @@ public enum Materials {
 
 	public boolean collides() {
 		switch(this) {
-		case BARS:
-		case BLUE_WALL:
-		case CRACK:
-		case GREEN_WALL:
-		case ORANGE_WALL:
-		case PURPLE_WALL:
-		case RED_WALL:
-		case TORCH:
-		case YELLOW_WALL:
-			return false;
-		case YELLOW_BRICK:
-		case RED_BRICK:
-		case ORANGE_BRICK:
-		case PURPLE_BRICK:
-		case GREEN_BRICK:
-		case BLUE_BRICK:
-		case BARRICADE:
-			return true;
-		default:
-			return true;
+			case BARS:
+			case BLUE_WALL:
+			case CRACK:
+			case GREEN_WALL:
+			case ORANGE_WALL:
+			case PURPLE_WALL:
+			case RED_WALL:
+			case TORCH:
+			case YELLOW_WALL:
+				return false;
+			case YELLOW_BRICK:
+			case RED_BRICK:
+			case ORANGE_BRICK:
+			case PURPLE_BRICK:
+			case GREEN_BRICK:
+			case BLUE_BRICK:
+			case BARRICADE:
+			default:
+				return true;
 		}
 	}
 }

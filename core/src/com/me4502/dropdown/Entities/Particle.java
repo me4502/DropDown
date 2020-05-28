@@ -13,7 +13,7 @@ import com.me4502.dropdown.Levels.Level;
 
 public class Particle extends InsentientEntity {
 
-	private ParticleType type;
+	private final ParticleType type;
 	ParticleAnimation animation;
 
 	public Particle(ParticleType type, Level level, Position position) {
@@ -44,13 +44,12 @@ public class Particle extends InsentientEntity {
 
 		float stateTime;
 
-		Animation emberAnimation;
+		Animation<TextureRegion> emberAnimation;
 		TextureRegion[] emberFrames;
 
 		TextureRegion currentFrame;
 
 		public ParticleAnimation() {
-
 			Texture emberSheet = TextureStorage.getTexture("embers");
 			TextureRegion[][] tmp = TextureRegion.split(emberSheet, emberSheet.getWidth() / 4, emberSheet.getHeight());
 			emberFrames = new TextureRegion[4];
@@ -58,7 +57,7 @@ public class Particle extends InsentientEntity {
 			for (int j = 0; j < 4; j++) {
 				emberFrames[index++] = tmp[0][j];
 			}
-			emberAnimation = new Animation(0.15f, emberFrames);
+			emberAnimation = new Animation<>(0.15f, emberFrames);
 
 			stateTime = 0f;
 		}
@@ -67,7 +66,6 @@ public class Particle extends InsentientEntity {
 			stateTime += Gdx.graphics.getDeltaTime();
 			updateSprite();
 			sprite.setOrigin(0f, 0f);
-			sprite.setScale(DropDownGame.lev.getBaseYScale());
 
 			//sprite.setScale(level.getBaseXScale(), level.getBaseYScale()/2);
 			sprite.setPosition((float)getPosition().getX(), (float)getPosition().getY());

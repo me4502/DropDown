@@ -6,12 +6,12 @@ import com.me4502.dropdown.Position;
 
 public class LevelBase {
 
-	private String name;
-	private Tile[][] tiles;
-	private Materials background;
-	private Position startPoint;
+	private final String name;
+	private final Tile[][] tiles;
+	private final Materials background;
+	private final Position startPoint;
 
-	private String next;
+	private final String next;
 
 	List<String> dialogLines;
 

@@ -6,7 +6,7 @@ import com.me4502.dropdown.Levels.LevelBase;
 
 public class LevelStorage {
 
-	private static HashMap<String, LevelBase> levels = new HashMap<String, LevelBase>();
+	private static final HashMap<String, LevelBase> levels = new HashMap<>();
 
 	public static void addLevelBase(String name, LevelBase level) {
 		levels.put(name, level);

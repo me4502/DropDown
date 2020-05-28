@@ -5,8 +5,8 @@ import com.me4502.dropdown.Levels.Level;
 
 public abstract class Goal {
 
-	private Enemy entity;
-	private Level level;
+	private final Enemy entity;
+	private final Level level;
 
 	private boolean finished = false;
 

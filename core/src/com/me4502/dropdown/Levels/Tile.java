@@ -60,8 +60,9 @@ public class Tile {
 	}
 
 	public boolean isColliding(Entity ent, boolean feetOnly, boolean allowLeniancy, boolean searchRadius) {
-
-		if(!type.collides()) return false;
+		if(!type.collides()) {
+			return false;
+		}
 
 		double curX = x*64*DropDownGame.lev.getBaseYScale()-Gdx.graphics.getWidth()/2 - DropDownGame.lev.cameraXOffset;
 		double otherX = ent.getMinimum().getX() + ent.getPosition().getX();
@@ -71,8 +72,6 @@ public class Tile {
 		double otherY = ent.getMinimum().getY() + ent.getPosition().getY();
 		double otherMaxY = otherY + (feetOnly ? ent.getMaximum().getY()/4 : ent.getMaximum().getY());
 
-		boolean collides = curX <= otherMaxX - 12 && otherX + 12 <= curX+64*DropDownGame.lev.getBaseYScale() && curY + 20 <= otherMaxY && otherY - (searchRadius ? 1 : 0) + (allowLeniancy ? 5 : 0) <= curY+64*DropDownGame.lev.getBaseYScale();
-
-		return collides;
+		return curX <= otherMaxX - 12 && otherX + 12 <= curX+64*DropDownGame.lev.getBaseYScale() && curY + 20 <= otherMaxY && otherY - (searchRadius ? 1 : 0) + (allowLeniancy ? 5 : 0) <= curY+64*DropDownGame.lev.getBaseYScale();
 	}
 }

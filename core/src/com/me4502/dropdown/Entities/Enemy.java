@@ -66,8 +66,8 @@ public class Enemy extends LivingEntity {
 			SoundStorage.getSound("boarDeath").play();
 			dead = true;
 		}
-		if(getPosition().getY() <= 0-Gdx.graphics.getHeight()/2) remove = true;
-		if(getPosition().getY() >= 0+Gdx.graphics.getHeight()/2) remove = true;
+		if(getPosition().getY() <= -Gdx.graphics.getHeight() / 2) remove = true;
+		if(getPosition().getY() >= Gdx.graphics.getHeight() / 2) remove = true;
 	}
 
 	@Override
@@ -95,14 +95,14 @@ public class Enemy extends LivingEntity {
 
 		float stateTime;
 
-		Animation walkAnimationLeft;
+		Animation<TextureRegion> walkAnimationLeft;
 		TextureRegion[] walkFramesLeft;
-		Animation walkAnimationRight;
+		Animation<TextureRegion> walkAnimationRight;
 		TextureRegion[] walkFramesRight;
 
-		Animation stillAnimationLeft;
+		Animation<TextureRegion> stillAnimationLeft;
 		TextureRegion[] stillFramesLeft;
-		Animation stillAnimationRight;
+		Animation<TextureRegion> stillAnimationRight;
 		TextureRegion[] stillFramesRight;
 
 		TextureRegion currentFrame;
@@ -115,7 +115,7 @@ public class Enemy extends LivingEntity {
 			for (int j = 0; j < 4; j++) {
 				walkFramesRight[index++] = tmp[0][j];
 			}
-			walkAnimationRight = new Animation(0.15f, walkFramesRight);
+			walkAnimationRight = new Animation<>(0.15f, walkFramesRight);
 
 			Texture walkSheetLeft = TextureStorage.getTexture("enemyLeft");
 			tmp = TextureRegion.split(walkSheetLeft, walkSheetLeft.getWidth() / 4, walkSheetLeft.getHeight());
@@ -124,32 +124,31 @@ public class Enemy extends LivingEntity {
 			for (int j = 0; j < 4; j++) {
 				walkFramesLeft[index++] = tmp[0][j];
 			}
-			walkAnimationLeft = new Animation(0.15f, walkFramesLeft);
+			walkAnimationLeft = new Animation<>(0.15f, walkFramesLeft);
 
 			Texture stillSheetLeft = TextureStorage.getTexture("enemyLeftStill");
-			tmp = TextureRegion.split(stillSheetLeft, stillSheetLeft.getWidth() / 1, stillSheetLeft.getHeight());
+			tmp = TextureRegion.split(stillSheetLeft, stillSheetLeft.getWidth(), stillSheetLeft.getHeight());
 			stillFramesLeft = new TextureRegion[1];
 			index = 0;
 			for (int j = 0; j < 1; j++) {
 				stillFramesLeft[index++] = tmp[0][j];
 			}
-			stillAnimationLeft = new Animation(0.15f, stillFramesLeft);
+			stillAnimationLeft = new Animation<>(0.15f, stillFramesLeft);
 
 			Texture stillSheetRight = TextureStorage.getTexture("enemyRightStill");
-			tmp = TextureRegion.split(stillSheetRight, stillSheetRight.getWidth() / 1, stillSheetRight.getHeight());
+			tmp = TextureRegion.split(stillSheetRight, stillSheetRight.getWidth(), stillSheetRight.getHeight());
 			stillFramesRight = new TextureRegion[1];
 			index = 0;
 			for (int j = 0; j < 1; j++) {
 				stillFramesRight[index++] = tmp[0][j];
 			}
-			stillAnimationRight = new Animation(0.15f, stillFramesRight);
+			stillAnimationRight = new Animation<>(0.15f, stillFramesRight);
 		}
 
 		public void render(SpriteBatch batch) {
 			stateTime += Gdx.graphics.getDeltaTime();
 			updateSprite();
 			sprite.setOrigin(0f, 0f);
-			sprite.setScale(DropDownGame.lev.getBaseYScale());
 
 			//sprite.setScale(level.getBaseXScale(), level.getBaseYScale()/2);
 			sprite.setPosition((float)getPosition().getX(), (float)getPosition().getY());

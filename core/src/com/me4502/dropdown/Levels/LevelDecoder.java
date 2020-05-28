@@ -20,7 +20,7 @@ public class LevelDecoder {
 		int width = 0, height = 0;
 		Materials background = null;
 		Tile[][] tiles = null;
-		List<String> dialogueLines = new LinkedList<String>();
+		List<String> dialogueLines = new LinkedList<>();
 
 		int index = 0;
 		try {
